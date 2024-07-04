@@ -1,8 +1,12 @@
 import React, {useState, useEffect} from "react"
 import api from "./api";
+import './App.css'
+
 
 const App = ()  => {
 
+  const [isCopied, setIsCopied] = useState(false);
+  const [status, setStatus] = useState(false)
   const [summaryData, setSummaryData] = useState([]);
   const [newsQuery, setNewsQuery] = useState({
     url: "",
@@ -23,10 +27,6 @@ const App = ()  => {
     }
   };
 
-  useEffect(() => {
-    fetchSummaryData();
-  }, []);
-
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setNewsQuery((prevQuery) => ({
@@ -38,45 +38,77 @@ const App = ()  => {
   const handleSubmit = (event) => {
     event.preventDefault();
     fetchSummaryData();
+    setIsCopied(false);
+    setNewsQuery((prevQuery) => ({
+      ...prevQuery,
+       // Set the URL input to an empty string
+    }))
+    
   };
+
+  const handleCopyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(summaryData.Summary);
+      setIsCopied(true);
+    } catch (error) {
+      console.error("Error copying to clipboard:", error);
+    }
+  };
+
+  const NewsSummary = ({ summaryData }) => {
+    const sentences = summaryData.Scores.Sentence;
+    const scores = summaryData.Scores.Scores;
+  }
   
-  return(<div>
-    <h1>Fetch Summary Data</h1>
-    <form onSubmit={handleSubmit}>
-      <label>
-        URL:
-        <input
-          type="text"
-          name="url"
-          value={newsQuery.url}
-          onChange={handleInputChange}
-        />
-      </label>
-      <br />
-      <label>
-        Summary Length:
-        <input
-          type="number"
-          name="wordcount"
-          value={newsQuery.wordcount}
-          onChange={handleInputChange}
-        />
-      </label>
-      <br />
-      <button type="submit">Fetch Summary</button>
-    </form>
-    <hr />
-    {summaryData && (
-      <div>
-        <h2>Summary Data</h2>
-        <p>Title : {summaryData.Title}</p>
-        <p>Original Word Count: {summaryData.OriginalWordCount}</p>
-        <p>Summary Word Count: {summaryData.SummaryWordCount}</p>
-        <p>Summary: {JSON.stringify(summaryData.Summary)}</p>
-        <p>Scores: {JSON.stringify(summaryData.Scores)}</p>
+  return(
+    <div className="App">
+      <h1 className="Main-Title">News Summary Application</h1>
+        <div className = "Container">
+          <form className = "query-form" onSubmit={handleSubmit}>
+            <label className = "label" for = "url">News Website : </label><br/>
+            <input
+                type = "url" 
+                placeholder="Enter News Website Url" 
+                name = "url"
+                id = "url" 
+                value={newsQuery.url} 
+                onChange={handleInputChange}
+                onFocus={() => setNewsQuery((prevQuery) => ({ ...prevQuery, url: "" }))}
+            />
+            
+            <br/><label className = "label" for = "wordcount">Summary Length : </label><br/>
+            <input
+              type="number"
+              name="wordcount"
+              id = "wordcount"
+              value={newsQuery.wordcount}
+              onChange={handleInputChange}
+            />
+            <br/>
+            
+            <button onClick = {() => setStatus(true)}>Submit  </button>
+          </form>
       </div>
-    )}
-  </div>);
+      <div className="Display">
+            {
+              status ?<label className="News-Title">{summaryData.Title}</label>:null
+            }
+            {
+               status ? <p className="News-Summary">{summaryData.Summary}</p> :null
+            }
+            {  
+              status ? <button onClick={handleCopyToClipboard}>
+              {isCopied ? "Copied!" : "Copy to Clipboard"}</button>: null
+            } 
+            {
+             
+            /*For Displaying table  */
+            }
+
+        </div>
+    </div>
+            
+  );
 };
 
 export default App;
