@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Intel-Final-Project-News-Summary-App/static/css/main.cf278a24.css",
+    "main.js": "/Intel-Final-Project-News-Summary-App/static/js/main.cc276795.js",
+    "static/js/453.18abbeab.chunk.js": "/Intel-Final-Project-News-Summary-App/static/js/453.18abbeab.chunk.js",
+    "index.html": "/Intel-Final-Project-News-Summary-App/index.html",
+    "main.cf278a24.css.map": "/Intel-Final-Project-News-Summary-App/static/css/main.cf278a24.css.map",
+    "main.cc276795.js.map": "/Intel-Final-Project-News-Summary-App/static/js/main.cc276795.js.map",
+    "453.18abbeab.chunk.js.map": "/Intel-Final-Project-News-Summary-App/static/js/453.18abbeab.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.cf278a24.css",
+    "static/js/main.cc276795.js"
+  ]
+}
