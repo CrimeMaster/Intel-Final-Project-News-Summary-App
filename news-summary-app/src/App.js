@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react"
+import React, {useState} from "react"
 import api from "./api";
 import './App.css'
 
@@ -55,10 +55,7 @@ const App = ()  => {
     }
   };
 
-  const NewsSummary = ({ summaryData }) => {
-    const sentences = summaryData.Scores.Sentence;
-    const scores = summaryData.Scores.Scores;
-  }
+ 
   
   return(
     <div className="App">

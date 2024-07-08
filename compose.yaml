@@ -1,0 +1,12 @@
+version: "3.8"
+services:
+  backend:
+    container_name: backend
+    build: ./server
+    expose:
+    - 8000
+    ports:
+    - "8000:8000"
+    volumes:
+      - ./server:/app
+      - /app/__pycache__
