@@ -4,7 +4,7 @@ The Following Application which i have worked on takes a url from the user and l
 
 STREAMLIT INSTRUCTIONS:
 
-1) CD streamlit-news-summary
+1) cd streamlit-news-summary
 2) pip install -r requirements.txt
 3) streamlit run app.py
 
