@@ -13,8 +13,10 @@ Docker Run Instructions:
 
 1) Clone the Repository
 
-2) run the following command : docker compose up --build (This will start the backend at port:8000)
+1.5) Install Node.js
 
-3) cd news-summary-app
+3) run the following command : docker compose up --build (This will start the backend at port:8000)
 
-4) npm start 
+4) cd news-summary-app
+
+5) npm start 
