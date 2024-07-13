@@ -7,6 +7,8 @@ STREAMLIT INSTRUCTIONS:
 1) cd streamlit-news-summary
 2) pip install -r requirements.txt
 3) streamlit run app.py
+Docker : 1) docker pull pontiuspirate/news-summary-app:v1.0
+         2) docker run pontiuspirate/news-summary-app:v1.0
 
 
 Docker Run Instructions:
